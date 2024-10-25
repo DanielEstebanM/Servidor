@@ -91,7 +91,7 @@
         $resultado = "<div class='dados'>";
 
         foreach ($dados as $dado) {
-            $resultado .= "<div class='dado'>".$figuraDados[$dado - 1]."</div>"; //Le resto 1 porquelos arrays comienzan desde 0 y los valores de los dados desde 1
+            $resultado .= "<div class='dado'>".$figuraDados[$dado - 1]."</div>"; //Le resto 1 porque los arrays comienzan desde 0 y los valores de los dados desde 1
         }
 
         $resultado .= "</div>";

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Jugador</title>
+    <style>
+        body {
+            background-color: #8c8ca3;
+            /* Fondo gris similar a la imagen */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .formulario {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 350px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        fieldset div {
+            display: flex;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .div_imagen {
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 100px;
+        }
+
+        .enviar {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .enviar:hover {
+            background-color: #004da0;
+            color: white;
+        }
+
+        .borrar {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .borrar:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .botones {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1>Formulario de Jugador</h1>
+
+        <form class="formulario" action="index.php" method="POST" enctype="multipart/form-data">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="alias">Alias:</label>
+            <input type="text" id="alias" name="alias" required>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required>
+
+            <fieldset>
+                <legend>Armas a elegir (puedes elegir letias):</legend>
+                <div>
+                    <input type="checkbox" id="maza" name="arma[]" value="Maza">
+                    <label for="maza"><strong>Maza</strong></label><br>
+                </div>
+                <div>
+                    <input type="checkbox" id="antorcha" name="arma[]" value="Antorcha">
+                    <label for="antorcha">Antorcha</label><br>
+                </div>
+                <div>
+                    <input type="checkbox" id="martillo" name="arma[]" value="Martillo">
+                    <label for="martillo"><strong>Martillo</strong></label><br>
+                </div>
+                <div>
+                    <input type="checkbox" id="latigo" name="arma[]" value="Látigo">
+                    <label for="latigo">Látigo</label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>¿Practica artes mágicas?</legend>
+                <div>
+                    <input type="radio" id="si" name="magia" value="Sí">
+                    <label for="si"><strong>Sí</strong></label><br>
+                </div>
+                <div>
+                    <input type="radio" id="no" name="magia" value="No">
+                    <label for="no">No</label>
+                </div>
+            </fieldset>
+
+            <label for="imagen">Subir imagen:</label>
+            <div class="div_imagen">
+                <input type="file" id="imagen" name="imagen" accept="image/png">
+            </div>
+
+            <div class="botones">
+                <button type="submit" class="enviar">Enviar</button>
+                <button type="reset" class="borrar">Borrar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+        function validarFormulario() {
+            let nombre = document.getElementById('nombre').value;
+            let alias = document.getElementById('alias').value;
+            let archivo = document.getElementById('imagen').files[0];
+
+            if (archivo) {
+                let tipo = archivo.type;
+                let tamaño = archivo.size / 1024;
+
+                if (tipo !== "image/png") {
+                    alert("Solo se permiten archivos .png.");
+                    return false;
+                }
+
+                if (tamaño > 10) {
+                    alert("El archivo no puede superar los 10KB.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+    </script>
+
+</body>
+
+</html>
