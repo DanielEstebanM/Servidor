@@ -12,18 +12,21 @@ if (isset($_POST['accion'])) {
                 $_SESSION['fruta'] = [];
             }
 
-                if ($cantidad > 0) {
-                    if (isset($_SESSION['fruta'][$fruta])) {
-                        $_SESSION['fruta'][$fruta] += $cantidad;
-                    } else {
-                        $_SESSION['fruta'][$fruta] = $cantidad;
-                    }
+            if ($cantidad > 0) {
+                if (isset($_SESSION['fruta'][$fruta])) {
+                    $_SESSION['fruta'][$fruta] += $cantidad;
                 } else {
-                    if (isset($_SESSION['fruta'][$fruta])) {
-                        $_SESSION['fruta'][$fruta] += $cantidad;
-                    }
+                    $_SESSION['fruta'][$fruta] = $cantidad;
                 }
-            
+            } else {
+                if (isset($_SESSION['fruta'][$fruta])) {
+                    $_SESSION['fruta'][$fruta] += $cantidad;
+                }
+            }
+
+            if ($_SESSION['fruta'][$fruta] <= 0) {
+                unset($_SESSION['fruta'][$fruta]);
+            }
 
             $compraRealizada = mostrarTabla();
 
